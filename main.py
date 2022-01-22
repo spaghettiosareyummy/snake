@@ -4,7 +4,7 @@ from pygame.math import Vector2 #allows us to just type "Vector2" instead of pyg
 class SNAKE:
     def __init__(self):
         self.body = [Vector2(5,10),Vector2(4,0),Vector2(3,10)]
-        self.direction = Vector2(1,0)
+        self.direction = Vector2(0,0)
         self.new_block = False
 
         self.head_up = pygame.image.load('Graphics/head_up.png').convert_alpha()
@@ -24,6 +24,7 @@ class SNAKE:
         self.body_tl = pygame.image.load('Graphics/body_tl.png').convert_alpha()
         self.body_br = pygame.image.load('Graphics/body_br.png').convert_alpha()
         self.body_bl = pygame.image.load('Graphics/body_bl.png').convert_alpha()
+        self.crunch_sound = pygame.mixer.Sound('Sounds\sound_crunch.wav')
 
 
 
@@ -94,6 +95,13 @@ class SNAKE:
     def add_block(self):
         self.new_block = True
 
+    def play_crunch(self):
+        self.crunch_sound.play()
+
+    def reset(self):
+        self.body = [Vector2(5,10),Vector2(4,10),Vector2(3,10)]
+        self.direction = Vector2(0,0)
+
 class FRUIT:
     def __init__(self):
         self.randomize()
@@ -131,6 +139,10 @@ class MAIN:
         if self.fruit.pos == self.snake.body[0]:
             self.fruit.randomize()
             self.snake.add_block()
+            self.snake.play_crunch()
+        for block in self.snake.body[1:]:
+            if block == self.fruit.pos:
+                self.fruit.randomize()
 
     def check_death(self):
         if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number:
@@ -141,8 +153,7 @@ class MAIN:
                 self.game_over()
 
     def game_over(self):
-        pygame.quit()
-        sys.exit()
+        self.snake.reset()
 
     def draw_grass(self):
         grass_color = (167,209,61)
@@ -172,7 +183,7 @@ class MAIN:
         screen.blit(apple,apple_rect)
         pygame.draw.rect(screen,(56,74,12), bg_rect,2)
 
-
+pygame.mixer.pre_init(44100,-16,2,512)
 pygame.init() #starts pygame as a whole
 cell_size = 40
 cell_number = 20
