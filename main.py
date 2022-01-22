@@ -81,6 +81,7 @@ cell_size = 40
 cell_number = 20
 screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size))
 clock = pygame.time.Clock() #helps us influence the time in pygame
+apple = pygame.image.load('Graphics/apple.png')
 
 
 SCREEN_UPDATE = pygame.USEREVENT
