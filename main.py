@@ -456,6 +456,7 @@ apple = pygame.image.load(r'Graphics\apple.png').convert_alpha()
 game_font = pygame.font.Font(r'Fonts\PoetsenOne-Regular.ttf',25)
 back_arrow = pygame.image.load(r'Graphics\OIP.jfif')
 esc_font = pygame.font.Font(r'Fonts\PoetsenOne-Regular.ttf',15)
+troll = pygame.image.load(r'Graphics\troll.jfif')
 
 buttonstart = StartButton('Start Game',200,40,(200,200),6)
 buttonop = OptButton('Options', 200, 40, (200,250),6)
@@ -511,6 +512,7 @@ def opt_menu():
                 sys.exit()
         text = game_font.render('Trolled e.e',True,'#FFFFFF')
         screen.blit(text, (177,200))
+        screen.blit(troll, (100,100))
 
         buttonback.draw()
 
@@ -571,4 +573,4 @@ def main_play():
         pygame.display.update() #displays all of the new info on the display surface
         mainClock.tick(60) #runs at 60 FPS
 
-esc_menu()
+start_menu()
