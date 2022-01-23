@@ -1,6 +1,192 @@
 import pygame, sys,random #imports pygame and sys :)
 from pygame.math import Vector2 #allows us to just type "Vector2" instead of pygame.math.Vector2()
 
+class StartButton:
+    def __init__(self,text,width,height,pos,elevation):
+        self.pressed = False
+        self.elevation = elevation
+        self.dyel = elevation
+        self.origin_y = pos[1]
+
+        self.top_rect = pygame.Rect(pos,(width,height))
+        self.top_color = '#31373e'
+
+        self.bottom_rect = pygame.Rect(pos,(width,elevation))
+        self.bottom_color = '#231f20'
+
+        self.text_surf = game_font.render(text,True,'#FFFFFF')
+        self.text_rect = self.text_surf.get_rect(center = self.top_rect.center)
+        
+        # self.click_sound = pygame.mixer.Sound(r'Sounds\mouse-click.mp3')
+
+    def draw(self):
+        self.top_rect.y = self.origin_y - self.dyel
+        self.text_rect.center = self.top_rect.center
+
+        self.bottom_rect.midtop = self.top_rect.midtop
+        self.bottom_rect.height = self.top_rect.height + self.dyel
+
+        pygame.draw.rect(screen,self.bottom_color,self.bottom_rect,border_radius=12)
+        pygame.draw.rect(screen,self.top_color,self.top_rect,border_radius = 12)
+        screen.blit(self.text_surf,self.text_rect)
+        self.click()
+
+    def click(self):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.top_rect.collidepoint(mouse_pos):
+            self.top_color = '#7289da'
+            if pygame.mouse.get_pressed()[0]:
+                self.dyel = 0
+                self.pressed = True
+            else:
+                self.dyel = self.elevation
+                if self.pressed == True:
+                    self.pressed = False
+                    main_play()
+        else:
+            self.dyel = self.elevation
+            self.top_color = '#31373e'
+
+class CredButton:
+    def __init__(self,text,width,height,pos,elevation):
+        self.pressed = False
+        self.elevation = elevation
+        self.dyel = elevation
+        self.origin_y = pos[1]
+
+        self.top_rect = pygame.Rect(pos,(width,height))
+        self.top_color = '#31373e'
+
+        self.bottom_rect = pygame.Rect(pos,(width,elevation))
+        self.bottom_color = '#231f20'
+
+        self.text_surf = game_font.render(text,True,'#FFFFFF')
+        self.text_rect = self.text_surf.get_rect(center = self.top_rect.center)
+        
+        # self.click_sound = pygame.mixer.Sound(r'Sounds\mouse-click.mp3')
+
+    def draw(self):
+        self.top_rect.y = self.origin_y - self.dyel
+        self.text_rect.center = self.top_rect.center
+
+        self.bottom_rect.midtop = self.top_rect.midtop
+        self.bottom_rect.height = self.top_rect.height + self.dyel
+
+        pygame.draw.rect(screen,self.bottom_color,self.bottom_rect,border_radius=12)
+        pygame.draw.rect(screen,self.top_color,self.top_rect,border_radius = 12)
+        screen.blit(self.text_surf,self.text_rect)
+        self.click()
+
+    def click(self):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.top_rect.collidepoint(mouse_pos):
+            self.top_color = '#7289da'
+            if pygame.mouse.get_pressed()[0]:
+                self.dyel = 0
+                self.pressed = True
+            else:
+                self.dyel = self.elevation
+                if self.pressed == True:
+                    self.pressed = False
+                    cred_menu()
+        else:
+            self.dyel = self.elevation
+            self.top_color = '#31373e'
+
+class OptButton:
+    def __init__(self,text,width,height,pos,elevation):
+        self.pressed = False
+        self.elevation = elevation
+        self.dyel = elevation
+        self.origin_y = pos[1]
+
+        self.top_rect = pygame.Rect(pos,(width,height))
+        self.top_color = '#31373e'
+
+        self.bottom_rect = pygame.Rect(pos,(width,elevation))
+        self.bottom_color = '#231f20'
+
+        self.text_surf = game_font.render(text,True,'#FFFFFF')
+        self.text_rect = self.text_surf.get_rect(center = self.top_rect.center)
+        
+        # self.click_sound = pygame.mixer.Sound(r'Sounds\mouse-click.mp3')
+
+    def draw(self):
+        self.top_rect.y = self.origin_y - self.dyel
+        self.text_rect.center = self.top_rect.center
+
+        self.bottom_rect.midtop = self.top_rect.midtop
+        self.bottom_rect.height = self.top_rect.height + self.dyel
+
+        pygame.draw.rect(screen,self.bottom_color,self.bottom_rect,border_radius=12)
+        pygame.draw.rect(screen,self.top_color,self.top_rect,border_radius = 12)
+        screen.blit(self.text_surf,self.text_rect)
+        self.click()
+
+    def click(self):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.top_rect.collidepoint(mouse_pos):
+            self.top_color = '#7289da'
+            if pygame.mouse.get_pressed()[0]:
+                self.dyel = 0
+                self.pressed = True
+            else:
+                self.dyel = self.elevation
+                if self.pressed == True:
+                    self.nothing.play()
+                    self.pressed = False
+                    opt_menu()
+        else:
+            self.dyel = self.elevation
+            self.top_color = '#31373e'
+
+class BackButton:
+    def __init__(self,text,width,height,pos,elevation):
+        self.pressed = False
+        self.elevation = elevation
+        self.dyel = elevation
+        self.origin_y = pos[1]
+
+        self.top_rect = pygame.Rect(pos,(width,height))
+        self.top_color = '#31373e'
+
+        self.bottom_rect = pygame.Rect(pos,(width,elevation))
+        self.bottom_color = '#231f20'
+
+        self.text_surf = game_font.render(text,True,'#FFFFFF')
+        self.text_rect = self.text_surf.get_rect(center = self.top_rect.center)
+        
+        # self.click_sound = pygame.mixer.Sound(r'Sounds\mouse-click.mp3')
+
+    def draw(self):
+        self.top_rect.y = self.origin_y - self.dyel
+        self.text_rect.center = self.top_rect.center
+
+        self.bottom_rect.midtop = self.top_rect.midtop
+        self.bottom_rect.height = self.top_rect.height + self.dyel
+
+        pygame.draw.rect(screen,self.bottom_color,self.bottom_rect,border_radius=12)
+        pygame.draw.rect(screen,self.top_color,self.top_rect,border_radius = 12)
+        screen.blit(self.text_surf,self.text_rect)
+        self.click()
+
+    def click(self):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.top_rect.collidepoint(mouse_pos):
+            self.top_color = '#7289da'
+            if pygame.mouse.get_pressed()[0]:
+                self.dyel = 0
+                self.pressed = True
+            else:
+                self.dyel = self.elevation
+                if self.pressed == True:
+                    self.nothing.play()
+                    self.pressed = False
+                    start_menu()
+        else:
+            self.dyel = self.elevation
+            self.top_color = '#31373e'
+
 class SNAKE:
     def __init__(self):
         self.body = [Vector2(5,10),Vector2(4,0),Vector2(3,10)]
@@ -24,7 +210,7 @@ class SNAKE:
         self.body_tl = pygame.image.load('Graphics/body_tl.png').convert_alpha()
         self.body_br = pygame.image.load('Graphics/body_br.png').convert_alpha()
         self.body_bl = pygame.image.load('Graphics/body_bl.png').convert_alpha()
-        self.crunch_sound = pygame.mixer.Sound('Sounds\sound_crunch.wav')
+        self.crunch_sound = pygame.mixer.Sound(r'Sounds\sound_crunch.wav')
 
 
 
@@ -119,10 +305,28 @@ class FRUIT:
         self.y = random.randint(0,cell_number - 1)
         self.pos = Vector2(self.x, self.y)
 
+class SCORE:
+    def __init__(self):
+        self.snake = SNAKE()
+        self.fruit = FRUIT()
+        score_text = str(len(self.snake.body) - 3)
+        score_surface = game_font.render(score_text,True,(56,74,12))
+        score_x = int(cell_size * cell_number - 60)
+        score_y = int(cell_size * cell_number - 40)
+        score_rect = score_surface.get_rect(center = (score_x,score_y))
+        apple_rect = apple.get_rect(midright = (score_rect.left,score_rect.centery))
+        self.bg_rect = pygame.Rect(apple_rect.left,apple_rect.top,apple_rect.width + score_rect.width + 6,apple_rect.height)
+
+        pygame.draw.rect(screen,(167,209,61),self.bg_rect)
+        screen.blit(score_surface,score_rect)
+        screen.blit(apple,apple_rect)
+        pygame.draw.rect(screen,(56,74,12),self.bg_rect,2)
+
 class MAIN:
     def __init__(self):
         self.snake = SNAKE()
         self.fruit = FRUIT()
+        self.score = SCORE()
 
     def update(self):
         self.snake.move_snake()
@@ -141,6 +345,9 @@ class MAIN:
             self.snake.add_block()
             self.snake.play_crunch()
         for block in self.snake.body[1:]:
+            if block == self.fruit.pos:
+                self.fruit.randomize()
+        for block in self.score.bg_rect:
             if block == self.fruit.pos:
                 self.fruit.randomize()
 
@@ -181,16 +388,23 @@ class MAIN:
         pygame.draw.rect(screen,(167,209,61),bg_rect)
         screen.blit(score_surface,score_rect)
         screen.blit(apple,apple_rect)
-        pygame.draw.rect(screen,(56,74,12), bg_rect,2)
+        pygame.draw.rect(screen,(56,74,12),bg_rect,2)
 
 pygame.mixer.pre_init(44100,-16,2,512)
 pygame.init() #starts pygame as a whole
 cell_size = 40
-cell_number = 20
+cell_number = 15
 screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size))
-clock = pygame.time.Clock() #helps us influence the time in pygame
+mainClock = pygame.time.Clock() #helps me influence the time in pygame
+startClock = pygame.time.Clock()
+credClock = pygame.time.Clock()
 apple = pygame.image.load(r'Graphics\apple.png').convert_alpha()
 game_font = pygame.font.Font(r'Fonts\PoetsenOne-Regular.ttf',25)
+
+buttonstart = StartButton('Start Game',200,40,(200,200),6)
+buttonop = OptButton('Options', 200, 40, (200,250),6)
+buttoncred = CredButton('Credits',200,40,(200,300),6)
+buttonback = BackButton('Return to Menu',200,40,(20,550),6)
 
 
 SCREEN_UPDATE = pygame.USEREVENT
@@ -198,28 +412,77 @@ pygame.time.set_timer(SCREEN_UPDATE,150)
 
 main_game = MAIN()
 
-while True:
-    for event in pygame.event.get(): #checking for every possible event
-        if event.type == pygame.QUIT: #checks if you press the X
-            pygame.quit #quits the game
-            sys.exit() #ends any code that is being run
-        if event.type == SCREEN_UPDATE:
-            main_game.update()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                if main_game.snake.direction.y != 1:
-                    main_game.snake.direction = Vector2(0,-1)
-            if event.key == pygame.K_DOWN:
-                if main_game.snake.direction.y != -1:
-                    main_game.snake.direction = Vector2(0,1)
-            if event.key == pygame.K_LEFT:
-                if main_game.snake.direction.x != 1:
-                    main_game.snake.direction = Vector2(-1,0)
-            if event.key == pygame.K_RIGHT:
-                if main_game.snake.direction.x != -1:
-                    main_game.snake.direction = Vector2(1,0)
+def start_menu():
+    while True:
 
-    screen.fill((175,215,70))
-    main_game.draw_elements()
-    pygame.display.update() #displays all of the new info on the display surface
-    clock.tick(60) #runs at 60 FPS
+        screen.fill((175,215,70))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit
+                sys.exit()
+
+        buttonstart.draw()
+        buttonop.draw()
+        buttoncred.draw()
+
+        pygame.display.update()
+        startClock.tick(60)
+        
+def cred_menu():
+    while True:
+        screen.fill((175,215,70))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit
+                sys.exit()
+        text = game_font.render('Made by spaghetti =)',True,'#FFFFFF')
+        screen.blit(text, (177,200))
+
+        buttonback.draw()
+
+        pygame.display.update()
+        credClock.tick(60)
+
+def opt_menu():
+    while True:
+        screen.fill((175,215,70))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit
+                sys.exit()
+        text = game_font.render('Trolled e.e',True,'#FFFFFF')
+        screen.blit(text, (177,200))
+
+        pygame.display.update()
+        credClock.tick(60)
+
+
+def main_play():
+    while True:
+        for event in pygame.event.get(): #checking for every possible event
+            if event.type == pygame.QUIT: #checks if you press the X
+                pygame.quit #quits the game
+                sys.exit() #ends any code that is being run
+            if event.type == SCREEN_UPDATE:
+                main_game.update()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    if main_game.snake.direction.y != 1:
+                        main_game.snake.direction = Vector2(0,-1)
+                if event.key == pygame.K_DOWN:
+                    if main_game.snake.direction.y != -1:
+                        main_game.snake.direction = Vector2(0,1)
+                if event.key == pygame.K_LEFT:
+                    if main_game.snake.direction.x != 1:
+                        main_game.snake.direction = Vector2(-1,0)
+                if event.key == pygame.K_RIGHT:
+                    if main_game.snake.direction.x != -1:
+                        main_game.snake.direction = Vector2(1,0)
+
+        screen.fill((175,215,70))
+        main_game.draw_elements()
+        pygame.display.update() #displays all of the new info on the display surface
+        mainClock.tick(60) #runs at 60 FPS
+
+cred_menu()
